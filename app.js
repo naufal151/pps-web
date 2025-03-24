@@ -3,6 +3,9 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
+// Serve static files from public folder
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Set EJS as the view engine
 app.set('view engine', 'ejs');
 
@@ -17,7 +20,7 @@ sequelize.authenticate()
   .catch((err) => {
     console.error('Unable to connect to the database:', err);
   });
-  
+
 // Route to render the home page
 app.get('/', (req, res) => {
   res.render('index', { title: 'Pajajaran Physical Society' });
